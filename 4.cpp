@@ -1,6 +1,6 @@
 /*
-04- Dada uma matriz A(7,7), retorne o menor valor dos elementos abaixo e acima da diagonal
-secundária.
+04- Leia um vetor de 40 posições e acumule os valores do primeiro elemento no segundo,
+deste no terceiro e assim por diante. Ao final, escreva o vetor obtido.
 */
 
 #include <stdio.h>
@@ -8,42 +8,45 @@ secundária.
 
 main(){
 	
-	int coluna, linha;
-		float A[7][7], menor_abaixo, menor_acima;
+	int contador=1, indice;
+	float vetor[40], acumulador=0;
 	
 	setlocale(LC_ALL, "Portuguese");
 	
-	printf("\n MOSTRAR O MENOR ELEMENTO ABAIXO E ACIMA DA DIAGONAL SECUNDÁRIA DE UMA MATRIZ:");
+	printf("\n ACUMULAR OS VALORES DE UM VETOR DO ÍNDICE ANTERIOR NO NOVO ÍNDICE E MOSTRAR O NOVO VETOR: ");
 		printf("\n\n *********************************************************************** \n");
+		
+	for(indice=0; indice<40; indice++){
+		
+		printf("\n Digite o %dº número: ", contador);
+			scanf("%f", &vetor[indice]);
 	
-	for(linha=0;linha<7;linha++)
-	for(coluna=0;coluna<7;coluna++){
+	acumulador = acumulador + vetor[indice];
 	
-	printf("\n Digite o número da linha %d e coluna %d da matriz: ", linha+1, coluna+1);
-		scanf("%f", &A[linha][coluna]);
+	vetor[indice] = acumulador;
 	
-	if(linha!=6 || coluna!=6){
+	if(indice<39){
+		
 		printf(" ----------------------------------------------------------------------- ");
 }
 
-	if((linha+1+coluna+1>=7+2 && A[linha][coluna]<menor_abaixo) || linha==1 && coluna==6){
-	
-	menor_abaixo = A[linha][coluna];
-}
-	
-	if((linha+1+coluna+1<=7 && A[linha][coluna]<menor_acima) || linha==0 && coluna==0){
-	
-	menor_acima = A[linha][coluna];
-}
-}
-	
-	printf("\n *********************************************************************** \n");
-		printf("\n RESULTADO: \n\n");
-			printf(" - O menor valor dos elementos ABAIXO da diagonal secundária é: %.3f;\n\n", menor_abaixo);
-				printf(" - O menor valor dos elementos ACIMA da diagonal secundária é: %.3f.\n", menor_acima);
+contador++;
 
-	printf("\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
+}
+
+	printf("\n\n *********************************************************************** \n");
+		printf("\n RESULTADO: \n");
+			printf("\n ----------------------------------------------------------------------- \n");
+				printf("\n O vetor obtido (com o valor do primeiro elemento acumulado no segundo e assim por diante) é (com 5 casas decimais): \n\n");
+				
+	for(indice=1, contador=1; indice<40; indice++, contador++){
+		
+		printf("\n %.5f (o %dº + o %dº números digitados)\n", vetor[indice], contador, contador+1);
+
+}
+
+	printf("\n\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 		printf("\n FIM DO PROGRAMA. \n");
 			printf("\n *********************************************************************** \n");
-			
+		
 }

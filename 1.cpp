@@ -1,6 +1,6 @@
 /*
-01- Fazer um programa para percorrer uma matriz de tamanho 4x4 e some os elementos da
-diagonal principal e diagonal secundária em duas variáveis diferentes.
+01- Escrever um algoritmo para ler cinco valores inteiros, calcular a sua média, e escrever na
+tela os números que são superiores à média.
 */
 
 #include <stdio.h>
@@ -8,42 +8,62 @@ diagonal principal e diagonal secundária em duas variáveis diferentes.
 
 main(){
 	
-	int coluna, linha;
-		float matriz[4][4], soma_dp, soma_ds;
+	int contador=1, vetor[5], maiores=0, media, indice, acumulador=0;
 	
 	setlocale(LC_ALL, "Portuguese");
 	
-	printf("\n SOMAR OS ELEMENTOS DAS DIAGONAIS DE UMA MATRIZ 4x4:");
+	printf("\n MOSTRAR OS NÚMEROS SUPERIORES À MEDIA DE UM VETOR DE 5 NÚMEROS INTEIROS:");
 		printf("\n\n *********************************************************************** \n");
-	
-	for(linha=0;linha<4;linha++)
-	for(coluna=0;coluna<4;coluna++){
-	
-	printf("\n Digite o número da linha %d e coluna %d da matriz: ", linha+1, coluna+1);
-		scanf("%f", &matriz[linha][coluna]);
-	
-	if(linha!=3 || coluna!=3){
+		
+	for(indice=0; indice<5; indice++){
+		
+		printf("\n Digite o %dº número: ", contador, indice);
+			scanf("%d", &vetor[indice]);
+			
+	if(indice<4){
+		
 		printf(" ----------------------------------------------------------------------- ");
 }
+			
+	acumulador = acumulador + vetor[indice];
 
-	if(linha==coluna){
-		
-	soma_dp = soma_dp + matriz[linha][coluna];
+contador++;
+
 }
 
-	if(linha==4-1-coluna){
-		
-	soma_ds = soma_ds + matriz[linha][coluna];
-}
-}
+	media = acumulador / indice;
 	
-	printf("\n *********************************************************************** \n");
-		printf("\n RESULTADO: \n\n");
-			printf(" - A soma dos elementos da diagonal principal é: %.3f;\n", soma_dp);
-				printf(" - A soma dos elementos da diagonal secundária é: %.3f.", soma_ds);
+	for(indice=0; indice<5; indice++){
+		
+	if(vetor[indice] > media){
+	
+	vetor[maiores] = vetor[indice];	
+}
 
-	printf("\n\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
+maiores++;
+
+}
+
+	printf("\n\n *********************************************************************** \n");
+		printf("\n RESULTADO: \n");
+			printf("\n ----------------------------------------------------------------------- \n");
+				printf("\n Os números que são superiores à média são: \n\n");
+	
+	maiores = 0;
+	
+	for(indice=0; indice<5; indice++){
+	
+	if(vetor[indice] > media){
+	
+		printf("\n %d (%dº número digitado)\n", vetor[maiores], maiores+1);
+}
+
+	maiores++;
+	
+}
+
+	printf("\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 		printf("\n FIM DO PROGRAMA. \n");
 			printf("\n *********************************************************************** \n");
-			
+		
 }

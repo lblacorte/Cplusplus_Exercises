@@ -1,7 +1,7 @@
 /*
-06- Leia uma matriz 20 x 20. Leia também um valor X. O programa deverá fazer uma busca desse
-valor na matriz e, ao final escrever a localização (linha e coluna) ou uma mensagem de “não
-encontrado”.
+06- Elaborar um algoritmo que leia um conjunto de 30 valores e os coloca em 2 vetores
+conforme os valores forem pares ou ímpares. O tamanho do vetor é 5 posições. Se algum
+vetor estiver cheio escrevê-lo. Terminada a leitura escrever o conteúdo dos dois vetores.
 */
 
 #include <stdio.h>
@@ -9,73 +9,179 @@ encontrado”.
 
 main(){
 	
-	int contador=0, coluna, linha, validar=0, vetor_linhas[400], vetor_colunas[400], delimitador;
-		float matriz[20][20], X;
+	int contador=1, vetor[30], total_pares[30], total_impares[30], pares[5], impares[5], indice, indice_pares=0, indice_impares=0, resto, delimitador_pares, delimitador_impares, contador_pares=1, contador_impares=1, totalpares, totalimpares;
 	
 	setlocale(LC_ALL, "Portuguese");
 	
-	printf("\n LOCALIZAR UM VALOR X EM UMA MATRIZ 20x20:");
+	printf("\n LER UM VETOR DE 30 NÚMEROS E EXIBI-LOS CONFORME À PARIDADE:");
 		printf("\n\n *********************************************************************** \n");
 	
-	for(linha=0;linha<20;linha++)
-	for(coluna=0;coluna<20;coluna++){
+	for(indice=0; indice<30; indice++){
+		
+		printf("\n Digite o %dº número: ", contador, indice);
+			scanf("%d", &vetor[indice]);
 	
-	printf("\n Digite o número da linha %d e coluna %d da matriz: ", linha+1, coluna+1);
-		scanf("%f", &matriz[linha][coluna]);
+	resto = vetor[indice] % 2;
 	
-	if(linha!=19 || coluna!=19){
+	if(resto==0){
+	
+	pares[indice_pares] = vetor[indice];
+	
+	total_pares[indice] = vetor[indice];
+	
+	indice_pares++;
+	
+	if(indice==29){
+	
+	totalpares = indice_pares;
+}
+	
+}
+	
+	else{
+	
+	impares[indice_impares] = vetor[indice];
+	
+	total_impares[indice] = vetor[indice];
+	
+	indice_impares++;
+
+	if(indice==29){
+	
+	totalimpares = indice_impares;
+}
+	
+}
+
+	if(indice_pares==0){
+		
+	contador_pares = indice_pares;
+}
+	else{
+	contador_pares = 1;
+	}
+
+	if(indice_impares==0){
+		
+	contador_impares = indice_impares;
+}
+	else{
+	contador_impares = 1;
+	}
+	
+	if(indice!=29 && indice_pares!=5 && indice_impares!=5){
+		
 		printf(" ----------------------------------------------------------------------- ");
 }
+
+	if(indice_pares==5){
+		
+	printf("\n *********************************************************************** \n");
+	
+	if(indice==29){
+		
+		printf("\n Os números que estão no último armazenamento do vetor dos pares são: \n\n");	
+}
+	else{
+		printf("\n O vetor dos pares está cheio (só suporta 5 números), e os números que estão nele são: \n\n");	
+}
+
+	for(indice_pares=0; indice_pares<5; indice_pares++){
+		
+		printf("\n %d \n", pares[indice_pares]);
+		
+}
+
+	printf("\n *********************************************************************** \n");
+	
+	delimitador_pares = indice_pares;
+	
+	indice_pares = 0;
+	
+}
+	
+	else{
+		delimitador_pares =0;
+	}
+
+	if(indice_impares==5){
+		
+	printf("\n *********************************************************************** \n");
+	
+	if(indice==29){
+		
+		printf("\n Os números que estão no último armazenamento do vetor dos ímpares são: \n\n");	
+}
+	else{
+		printf("\n O vetor dos ímpares está cheio (só suporta 5 números), e os números que estão nele são: \n\n");
+}
+
+	for(indice_impares=0; indice_impares<5; indice_impares++){
+		
+		printf("\n %d \n", impares[indice_impares]);
+		
+}
+	
+	delimitador_impares = indice_impares;
+	
+	indice_impares = 0;
+	
+}
+	else{
+	delimitador_impares =0;
+	}
+
+	if(indice==29 && delimitador_pares<4 && contador_pares!=0){
+		
+	printf("\n *********************************************************************** \n");
+	
+		printf("\n Os números que estão no último armazenamento do vetor dos pares (que não encheram o vetor) são:\n");
+	
+	for(indice_pares=0; indice_pares<5; indice_pares++){
+	
+		printf("\n %d \n", pares[indice_pares]);
+}
+}
+
+	if(indice==29 && delimitador_impares<4 && contador_impares!=0){
+		
+		printf("\n Os números que estão no último armazenamento do vetor dos ímpares (que não encheram o vetor) são:\n");
+	
+	for(indice_impares=0; indice_impares<5; indice_impares++){
+	
+		printf("\n %d \n", impares[indice_impares]);	
+}
+}
+
+contador++;
+
 }
 
 	printf("\n\n *********************************************************************** \n");
+		printf("\n RESULTADO: \n");
+			printf("\n ----------------------------------------------------------------------- \n");
+				printf("\n Os números pares digitados são: \n\n");
 	
-	printf("\n Digite o valor X que será procurado na matriz: ");
-		scanf("%f", &X);
-	
-	for(linha=0;linha<20;linha++)
-	for(coluna=0;coluna<20;coluna++){
-	
-	if(matriz[linha][coluna]==X){
-	
-	validar = 1;
-	
-	vetor_linhas[contador] = linha + 1;
-	
-	vetor_colunas[contador] = coluna + 1;
-	
-	contador++;
-}
-}
-
-	delimitador = contador;
-	
-	printf("\n *********************************************************************** \n");
-		printf("\n\n RESULTADO: \n\n");
-	
-	if(validar!=0){
-		printf("\n O valor X foi localizado: \n\n");
-	
-	for(contador=0;contador<delimitador;contador++){
+	for(indice=0; indice<30; indice++){
 		
-	printf("\n - Na linha %d e coluna %d", vetor_linhas[contador], vetor_colunas[contador]);
+		if(indice<=totalpares){
 	
-	if(contador!=delimitador-1){
-		printf(";");
+		printf("\n %d", total_pares[indice]);
+}
 }
 
-	else{
-		printf(".");
-}
-}
-}
+	printf("\n Os números ímpares digitados são: \n\n");
 	
-	else{
-		printf("\n O valor X NÃO foi encontrado. ");
+	for(indice=0; indice<30; indice++){
+		
+		if(indice<=totalimpares){
+		printf("\n %d", total_impares[indice]);
 }
 
-	printf("\n\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
+}
+
+	printf("\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 		printf("\n FIM DO PROGRAMA. \n");
 			printf("\n *********************************************************************** \n");
-			
+		
 }

@@ -1,6 +1,7 @@
 /*
-02- Fazer um programa para ler uma matriz de tamanho M1xM2 (pode ser escolhido pelo usuário),
-e multiplicar a matriz por uma constante, ao final imprimir o valor da matriz resultante.
+02- Escrever um algoritmo para ler a quantidade de horas/aula de dois professores e o valor
+por hora recebido por cada um. Mostrar na tela qual dos professores tem salário total
+maior.
 */
 
 #include <stdio.h>
@@ -8,57 +9,47 @@ e multiplicar a matriz por uma constante, ao final imprimir o valor da matriz re
 
 main(){
 	
-	int coluna, linha, M1=5, M2=5;
-		float matriz[M1][M2], matriz_r[M1][M2];
+	int contador=1, indice, professor;
+	float quantidade_horas[2], valor_hora[2], salario[2], maior=0;
 	
 	setlocale(LC_ALL, "Portuguese");
 	
-	printf("\n MULTIPLICAR UMA MATRIZ POR UMA CONSTANTE (ESCOLHI 13):");
+	printf("\n MOSTRAR O MAIOR SALÁRIO ENTRE 2 PROFESSORES:");
 		printf("\n\n *********************************************************************** \n");
-	
-	printf("\n Digite o número de LINHAS que você quer que a matriz tenha: ");
-		scanf("%d", &M1);
 		
-	printf(" ----------------------------------------------------------------------- ");
-	
-	printf("\n Digite o número de COLUNAS que você quer que a matriz tenha: ");
-		scanf("%d", &M2);
-	
-	printf("\n *********************************************************************** \n");
-	
-	for(linha=0;linha<M1;linha++)
-	for(coluna=0;coluna<M2;coluna++){
-	
-	printf("\n Digite o número da linha %d e coluna %d da matriz: ", linha+1, coluna+1);
-		scanf("%f", &matriz[linha][coluna]);
-	
-	if(linha!=M1-1 || coluna!=M2-1){
-		printf(" ----------------------------------------------------------------------- ");
-}
-
-	matriz_r[linha][coluna] = matriz[linha][coluna] * 13;
-}
-
-	printf("\n *********************************************************************** \n");
-		printf("\n RESULTADO: \n\n");
-			printf(" A matriz resultante (multiplicação da matriz que você digitou por 13) é:\n\n\n");
+	for(indice=0; indice<2; indice++){
+		
+		printf("\n Digite a quantidade de horas/aula do %dº professor (a): ", contador);
+			scanf("%f", &quantidade_horas[indice]);
 			
-	for(linha=0;linha<M1;linha++)
-	for(coluna=0;coluna<M2;coluna++){
+		printf("\n Digite o valor por hora recebido pelo %dº professor (a): ", contador);
+			scanf("%f", &valor_hora[indice]);
+			
+	if(indice<1){
+		
+		printf("\n ----------------------------------------------------------------------- \n");
+}
+
+	salario[indice] = valor_hora[indice] / quantidade_horas[indice];
 	
-	if(coluna!=0){
-		printf("        ");
+	if(salario[indice] > maior){
+		
+	maior = salario[indice];
+	
+	professor = contador;
 }
 
-	if(coluna==0 && linha!=0 && linha!=M1){
-		printf("\n\n\n\n");
+contador++;
 }
 
-	printf(" %.3f", matriz_r[linha][coluna]);
-}
+	printf("\n\n *********************************************************************** \n");
+		printf("\n RESULTADO: \n");
+			printf("\n ----------------------------------------------------------------------- \n");
+				printf("\n O professor (a) que tem salário total maior é o (a): \n\n");
+					printf("\n %dº professor (a) (que tem salário de R$%.2f).", professor, maior);
 
 	printf("\n\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 		printf("\n FIM DO PROGRAMA. \n");
 			printf("\n *********************************************************************** \n");
-			
+		
 }

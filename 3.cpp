@@ -1,118 +1,88 @@
 /*
-03- Dada duas matrizes, calcule a soma, a multiplicação, a diferença e a divisão. Crie um menu
-para que você possa escolher o tipo de operação que pretende realizar.
+03- Construa um algoritmo que leia 50 valores inteiros e positivos e:
+· Encontre o maior valor;
+· Encontre o menor valor;
+· Calcule a média dos números lidos.
 */
 
 #include <stdio.h>
 #include <locale.h>
-#include <string.h>
+#include <stdlib.h>
 
 main(){
 	
-	char operacao[13];
-		int coluna, linha, num_colunas=5, num_linhas=5;
-			float matriz1[num_linhas][num_colunas], matriz2[num_linhas][num_colunas], resposta[num_linhas][num_colunas];
+	int vetor[50], maior, menor, indice, negativo;
+	char tentar_novamente;
+	float media, contador, acumulador;
 	
 	setlocale(LC_ALL, "Portuguese");
-	
-	printf("\n FAZER CÁLCULOS COM DUAS MATRIZES:");
-		printf("\n\n *********************************************************************** \n");
-	
-	printf("\n Digite o número de LINHAS que você quer que as matrizes tenham: ");
-		scanf("%d", &num_linhas);
 		
-	printf(" ----------------------------------------------------------------------- ");
+	while(negativo<=0 || indice==0){
 	
-	printf("\n Digite o número de COLUNAS que você quer que as matrizes tenham: ");
-		scanf("%d", &num_colunas);
+	system("cls");
 	
-	printf("\n *********************************************************************** \n");
+	maior=0;
 	
-	printf("\n PRIMEIRA MATRIZ: \n\n");
+	menor=0;
 	
-	for(linha=0;linha<num_linhas;linha++)
-	for(coluna=0;coluna<num_colunas;coluna++){
+	acumulador=0;
 	
-	printf("\n Digite o número da linha %d e coluna %d da matriz: ", linha+1, coluna+1);
-		scanf("%f", &matriz1[linha][coluna]);
+		printf("\n MOSTRAR O MAIOR, O MENOR E A MÉDIA DE 50 NÚMEROS:");
+			printf("\n\n *********************************************************************** \n");
 	
-	if(linha!=num_linhas-1 || coluna!=num_colunas-1){
+	for(indice=0, contador=1; indice<50 && vetor[indice-1]>0; indice++, contador++){
+	
+		printf("\n Digite o %.0fº número: ", contador);
+			scanf("%d", &vetor[indice]);
+	
+	if(vetor[indice]<=0){
+		
+		printf("\n \n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ");
+			printf("\n \n ERRO: Você digitou um número negativo ou zero! Os números precisam ser positivos! \n Números desconsiderados! Inicie novamente!");
+				printf("\n \n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n");
+				
+		printf("\n\n DIGITE QUALQUER CARACTERE E APERTE ENTER PARA TENTAR NOVAMENTE: ");
+			scanf(" %c", &tentar_novamente);
+			
+	negativo = vetor[indice];
+}
+
+	else{
+		
+	negativo = 1;
+		
+	if(indice<49){
+		
 		printf(" ----------------------------------------------------------------------- ");
+}	
+		
+	if(vetor[indice]>maior){
+		
+	maior = vetor[indice];
+}
+	
+	if(indice==0 || vetor[indice]<menor){
+		
+	menor = vetor[indice];
+}
+	
+	acumulador = acumulador + vetor[indice];
+	
+}
 }
 }
 
-	printf("\n\n ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| \n\n");
-	
-	printf("\n SEGUNDA MATRIZ: \n\n");
-
-	for(linha=0;linha<num_linhas;linha++)
-	for(coluna=0;coluna<num_colunas;coluna++){
-	
-	printf("\n Digite o número da linha %d e coluna %d da matriz: ", linha+1, coluna+1);
-		scanf("%f", &matriz2[linha][coluna]);
-	
-	if(linha!=num_linhas-1 || coluna!=num_colunas-1){
-		printf(" ----------------------------------------------------------------------- ");
-}
-}
+	media = acumulador / (contador - 1);
 
 	printf("\n\n *********************************************************************** \n");
+		printf("\n RESULTADO: \n");
+			printf("\n ----------------------------------------------------------------------- \n");
+				printf("\n O maior valor lido é: %d; \n", maior);
+					printf("\n O menor valor lido é: %d; \n", menor);
+						printf("\n O média dos números lidos é: %.5f. \n", media);
 
-	printf("\n Confira o menu abaixo: \n");
-	
-	printf("\n\n MENU DE OPERAÇÕES POSSÍVEIS ENTRE AS DUAS MATRIZES: \n");
-		printf("\n - Para somar => digite SOMA;");
-			printf("\n - Para multiplicar => digite MULTIPLICACAO;");
-				printf("\n - Para subtrair => digite DIFERENCA;");
-					printf("\n - Para dividir => digite DIVISAO. \n");
-	
-	printf("\n\n Agora, digite abaixo o nome da operação que você quer realizar, exatamente de acordo com o menu (exemplo: DIVISAO):\n\n ");
-		scanf("%s", &operacao);
-	
-	for(linha=0;linha<num_linhas;linha++)
-	for(coluna=0;coluna<num_colunas;coluna++){
-		
-	if(!strcmp(operacao,"SOMA")){
-
-	resposta[linha][coluna] = matriz1[linha][coluna] + matriz2[linha][coluna];
-}
-	
-	if(!strcmp(operacao,"MULTIPLICACAO")){
-
-	resposta[linha][coluna] = matriz1[linha][coluna] * matriz2[linha][coluna];
-}
-
-	if(!strcmp(operacao,"DIFERENCA")){
-
-	resposta[linha][coluna] = matriz1[linha][coluna] - matriz2[linha][coluna];
-}
-	
-	if(!strcmp(operacao,"DIVISAO")){
-
-	resposta[linha][coluna] = matriz1[linha][coluna] / matriz2[linha][coluna];
-}
-}
-
-	printf("\n\n *********************************************************************** \n");
-		printf("\n RESULTADO: \n\n");
-			printf(" A matriz resultante do cálculo que você escolheu para ser feito entre as duas matrizes é: \n\n\n");
-
-	for(linha=0;linha<num_linhas;linha++)
-	for(coluna=0;coluna<num_colunas;coluna++){
-	
-	if(coluna!=0){
-		printf("        ");
-}
-
-	if(coluna==0 && linha!=0 && linha!=num_linhas){
-		printf("\n\n\n\n");
-}
-
-	printf(" %.3f", resposta[linha][coluna]);
-}
-
-	printf("\n\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
+	printf("\n +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 		printf("\n FIM DO PROGRAMA. \n");
 			printf("\n *********************************************************************** \n");
-			
+		
 }
